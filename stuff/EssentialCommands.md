@@ -20,13 +20,15 @@
 
 Basic concept to know:
 
-* **Text Terminal**: text input/output environment.
+* **Text Terminal**: Text input/output environment.
   * Originally, they meant a piece of equipment through which you could interact with a computer: in the early days of Unix, that meant a teleprinter-style device resembling a typewriter, sometimes called a teletypewriter, or “tty” in shorthand
   * Tty were used to establish a connection to a mainframe computer and share operating system provided by it
   * A typical text terminal produces input and displays output and errors
+
 * **Console**: terminal in modern computers that don't use mainframe but have an own operating system. It is generally a terminal in the physical sense that is, by some definition, the primary terminal directly connected to a machine. 
   * The console appears to the operating system "like" a remote terminal
   * In Linux and FreeBSD, the console, in realty, appears as several terminals (*ttys*) called *Virtual Consoles*
+
 * **Virtual Consoles**: to provide several text terminals on a single computer
   * Multiple virtual consoles can be accessed simultaneously
 * **Shell**: command line interface or CLI
@@ -37,7 +39,7 @@ Basic concept to know:
 
 To summarize: A virtual console is a shell prompted in a non-graphical environment, accessed from the physical machine, not remotely. 
 
-* **Pseudo-terminal**: Terminal provided by programs called terminal emulators e.g. `ssh`, `tmux`
+* **Pseudo-terminal or Terminal Emulator**: It's an app in windows e.g. `ssh`, `tmux`
 
 * **X Windows System**: is a windowing system for bitmap displays
   * X provides the basic framework for a graphical user interface (GUI) environment: drawing and moving windows on the display device and interacting with a mouse and keyboard
@@ -49,9 +51,16 @@ To summarize: A virtual console is a shell prompted in a non-graphical environme
 
 Log in:
 
-* To log into local environment you must provide, when prompted, *userID* and *password* for both graphical and text mode
-* To login into a remote text environment you can use command `ssh`
-* To login into a remote graphical environment you can use command `ssh -X`
+There are four ways to login:
+
+1. Local text-mode console: To log into local environment you must provide, when prompted, *userID* and *password* for both graphical and text mode.
+2. Local graphical-mode console: To login into local GUI, you also need to type *userID* and *password*.
+3. Remote graphical-mode console: To login into a remote graphical environment you can use command `ssh -X` or softwares like `VNC Viewer` or `RDP` in Windows.
+4. Remote text-mode console: To login into a remote text environment you can use command `ssh`*. Before SSH, telnet was there but it's not secure. 
+
+* Difference between SSH and Telnet
+ * Telnet and SSH both are Layer7 application layer protocols and both use TCP (Transmission Control Protocol) at the transport layer.
+ * The most significant difference between SSH and Telnet is that Telnet transfers the data in the form of simple plaintext, whereas SSH uses encrypted format for data transmission and also it uses a secure channel.
 
 Once logged command `w` can be used to show who is logged and what they are doing:
 
@@ -79,6 +88,19 @@ References:
 * [https://en.wikipedia.org/wiki/System_console](https://en.wikipedia.org/wiki/System_console)
 * [https://unix.stackexchange.com/questions/60641/linux-difference-between-dev-console-dev-tty-and-dev-tty0](https://unix.stackexchange.com/questions/60641/linux-difference-between-dev-console-dev-tty-and-dev-tty0)
 
+
+## Read and Use System Documentation
+
+* **--help**: Used to display the flag and it's meaning. e.g. ls --help
+* **man** <command>: Used to get the detailed description of the command. e.g. man journalctl
+ * Sometimes, you need to get the detailed description of commmand which can be of types - Commands, System calls ( System Functions) etc. Run "man man" commmand and then select the type and then enter the command name. e.g. Run "man 1 printf" if you want to seacrh about the printf command or "man 3 printf" if you want to seacrh about the printf function.
+   ![image](https://github.com/user-attachments/assets/14469c55-2f47-45ea-b700-27f7fe33b5e9)
+
+* **apropos**: If you forget the command name that you want to use. It will search that keyword in the all the commands description and display all the commands that matches. e.g. "apropos director" will display ls, mkdir etc.
+  ![image](https://github.com/user-attachments/assets/916569bc-a827-4dae-8ced-604c05e202bc)
+
+ * apropos command will list all the possible outputs. Suppose you only want to search command which usually found in section 1 and 8, you can seach for "apropos -s 1,8 director".
+ * If apropos command don't work, try running "sudo mandb" to initialise or manually update index database caches.
 
 ## Search for files
 
