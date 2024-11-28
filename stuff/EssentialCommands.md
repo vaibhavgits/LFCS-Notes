@@ -47,7 +47,7 @@ To summarize: A virtual console is a shell prompted in a non-graphical environme
   * Some applications running inside X Windows System provide pseudo-terminal e.g. Konsole, Gnome Terminal
   * If graphical environment is not started, you can run command `startx` to execute it
 
-Log in:
+Log in: There are four methods to login-
 
 * To log into local environment you must provide, when prompted, *userID* and *password* for both graphical and text mode
 * To login into a remote text environment you can use command `ssh`
